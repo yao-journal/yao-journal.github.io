@@ -28,6 +28,12 @@ content:
         label: 显示在网站上（关掉就只有自己在后台能看到）
         type: boolean
         default: true
+      - name: photos
+        label: 照片（可以加多张，会显示在正文下面）
+        type: image
+        options:
+          multiple: true
+          rename: true
       - name: body
         label: 正文
         type: rich-text
@@ -55,8 +61,14 @@ content:
         label: 显示在网站上
         type: boolean
         default: true
+      - name: photos
+        label: 照片（可以加多张，会显示在正文下面）
+        type: image
+        options:
+          multiple: true
+          rename: true
       - name: body
-        label: 正文（可以插入照片）
+        label: 正文
         type: rich-text
 
   - name: site
@@ -70,4 +82,3 @@ content:
       - name: intro
         label: 首页的一句话
         type: string
-        
