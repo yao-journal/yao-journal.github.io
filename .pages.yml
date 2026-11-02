@@ -1,0 +1,73 @@
+media:
+  input: src/media
+  output: /media
+
+content:
+  - name: diary
+    label: 心情日记
+    type: collection
+    path: src/diary
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+      - name: mood
+        label: 今天的心情
+        type: select
+        options:
+          values: [开心, 兴奋, 平静, 想家, 疲惫, 低落, 烦躁]
+      - name: place
+        label: 在哪里（可不填）
+        type: string
+      - name: published
+        label: 显示在网站上（关掉就只有自己在后台能看到）
+        type: boolean
+        default: true
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: travel
+    label: 旅行
+    type: collection
+    path: src/travel
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+      - name: place
+        label: 地点
+        type: string
+      - name: cover
+        label: 封面照片
+        type: image
+      - name: published
+        label: 显示在网站上
+        type: boolean
+        default: true
+      - name: body
+        label: 正文（可以插入照片）
+        type: rich-text
+
+  - name: site
+    label: 网站设置
+    type: file
+    path: src/_data/site.json
+    fields:
+      - name: title
+        label: 网站名字
+        type: string
+      - name: intro
+        label: 首页的一句话
+        type: string
+        
