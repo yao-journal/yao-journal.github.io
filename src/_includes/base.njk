@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.intro }}">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>">
+</head>
+<body>
+  <div class="airmail" aria-hidden="true"></div>
+  <header class="masthead">
+    <a class="sitename" href="/">{{ site.title }}</a>
+    <nav>
+      <a href="/diary/" {% if (page.url or "").startsWith("/diary/") %}aria-current="page"{% endif %}>日记</a>
+      <a href="/travel/" {% if (page.url or "").startsWith("/travel/") %}aria-current="page"{% endif %}>旅行</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer class="foot">{{ site.title }}</footer>
+</body>
+</html>

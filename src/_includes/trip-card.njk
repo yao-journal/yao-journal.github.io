@@ -1,0 +1,7 @@
+<li class="card">
+  <a href="{{ item.url }}">
+    {% if item.data.cover %}<img src="{{ item.data.cover }}" alt="">{% else %}<span class="card-blank">{{ item.data.place or "旅行" }}</span>{% endif %}
+    <span class="card-place">{{ item.data.place }}{% if item.data.place %}，{% endif %}{{ item.date | year }}</span>
+    <span class="card-title">{{ item.data.title }}</span>
+  </a>
+</li>

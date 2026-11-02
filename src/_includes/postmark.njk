@@ -1,0 +1,7 @@
+{#- 邮戳：颜色跟着当天的心情走。需要变量 pm_date, pm_mood, pm_place, pm_size -#}
+{%- set m = moods[pm_mood] -%}
+<span class="postmark postmark--{{ pm_size or 'sm' }}" style="--ink: {{ m.ink if m else '#1E2B4A' }}">
+  <span class="pm-year">{{ pm_date | year }}</span>
+  <span class="pm-day">{{ pm_date | md }}</span>
+  {%- if pm_size == 'lg' %}<span class="pm-place">{{ pm_place or (m.emoji if m else '') }}</span>{% endif %}
+</span>

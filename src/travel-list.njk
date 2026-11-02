@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: 旅行
+permalink: /travel/
+---
+<section class="hello hello--small">
+  <h1>旅行</h1>
+  <p>去过的地方，和当时的感想。</p>
+</section>
+<section class="block">
+  {% if collections.travel.length %}
+  <ul class="cards">
+    {% for item in collections.travel %}{% include "trip-card.njk" %}{% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">还没有游记。出发之后，在“旅行”里上传照片、写下第一站。</p>
+  {% endif %}
+</section>

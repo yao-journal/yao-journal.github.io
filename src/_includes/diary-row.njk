@@ -1,0 +1,11 @@
+{%- set m = moods[item.data.mood] -%}
+<li class="row">
+  <a href="{{ item.url }}">
+    {% set pm_date = item.date %}{% set pm_mood = item.data.mood %}{% set pm_size = 'sm' %}
+    {% include "postmark.njk" %}
+    <span class="row-text">
+      <span class="row-title">{{ item.data.title }}</span>
+      <span class="row-excerpt">{% if m %}{{ m.emoji }} {% endif %}{{ item.content | excerpt }}</span>
+    </span>
+  </a>
+</li>

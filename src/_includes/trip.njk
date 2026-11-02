@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+<article class="entry trip">
+  {% if cover %}<figure class="trip-cover"><img src="{{ cover }}" alt="{{ title }}"></figure>{% endif %}
+  <header class="trip-head">
+    <p class="entry-date"><time datetime="{{ date | isoDate }}">{{ date | fullDate }}</time>{% if place %}，{{ place }}{% endif %}</p>
+    <h1>{{ title }}</h1>
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  <p class="back"><a href="/travel/">回到全部旅行</a></p>
+</article>
