@@ -10,9 +10,8 @@ layout: base.njk
     </p>
   </header>
   {% if cover %}<figure class="trip-cover"><img src="{{ cover }}" alt="{{ title }}"></figure>{% endif %}
-  <div class="prose">
-    {{ content | safe }}
-  </div>
+  {% if content | trim %}<div class="prose">{{ content | safe }}</div>{% endif %}
+  {% include "sections.njk" %}
   {% if photos and photos.length %}
   <div class="photos">
     {% for src in photos %}<img src="{{ src }}" alt="">{% endfor %}

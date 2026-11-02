@@ -1,5 +1,8 @@
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import markdownIt from "markdown-it";
+
+const md = markdownIt({ html: true, breaks: true });
 
 export default function (config) {
   // 自动给链接和图片加上网站路径前缀
@@ -52,6 +55,23 @@ export default function (config) {
   // 找出正文里的第一张照片，用作格子封面
   config.addFilter("firstImage", (html = "") => {
     const m = String(html).match(/<img[^>]+src="([^"]+)"/);
+    return m ? m[1] : "";
+  });
+  // “内容”里的文字块是 markdown，这里转成网页
+  config.addFilter("markdown", (text = "") => md.render(String(text)));
+  // 首页格子的封面：封面照片 → 内容里的第一张照片 → 旧照片栏 → 正文里的第一张图
+  config.addFilter("coverOf", (data = {}, content = "") => {
+    if (data.cover) return data.cover;
+    for (const s of data.sections || []) {
+      if (s.type === "photo" && s.image) return s.image;
+      if (s.type === "row" && s.images && s.images.length) return s.images[0];
+      if (s.type === "text" && s.text) {
+        const m = String(s.text).match(/!\[[^\]]*\]\(([^)\s]+)/) || String(s.text).match(/<img[^>]+src="([^"]+)"/);
+        if (m) return m[1];
+      }
+    }
+    if (data.photos && data.photos.length) return data.photos[0];
+    const m = String(content).match(/<img[^>]+src="([^"]+)"/);
     return m ? m[1] : "";
   });
   config.addFilter("head", (arr, n) => (arr || []).slice(0, n));

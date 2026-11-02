@@ -1,0 +1,193 @@
+media:
+  input: src/media
+  output: /media
+  rename: true
+
+content:
+  - name: diary
+    label: 心情日记
+    type: collection
+    path: src/diary
+    filename: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+      - name: mood
+        label: 今天的心情
+        type: select
+        options:
+          values: [开心, 兴奋, 平静, 想家, 疲惫, 低落, 烦躁]
+      - name: place
+        label: 在哪里（可不填）
+        type: string
+      - name: published
+        label: 显示在网站上（关掉就只有自己在后台能看到）
+        type: boolean
+        default: true
+      - name: body
+        label: 开头的话（可不填）
+        type: rich-text
+      - name: sections
+        label: 内容（文字和照片一块一块加，可以拖动调整顺序）
+        type: block
+        list: true
+        blockKey: type
+        blocks:
+          - name: text
+            label: 文字
+            fields:
+              - name: text
+                label: 文字
+                type: rich-text
+                options:
+                  format: markdown
+          - name: photo
+            label: 照片
+            fields:
+              - name: image
+                label: 照片
+                type: image
+                required: true
+              - name: size
+                label: 大小
+                type: select
+                options:
+                  values:
+                    - name: small
+                      label: 小
+                    - name: medium
+                      label: 中
+                    - name: large
+                      label: 大（和文字一样宽）
+                    - name: wide
+                      label: 超宽
+              - name: caption
+                label: 照片说明（可不填）
+                type: string
+          - name: row
+            label: 几张照片并排
+            fields:
+              - name: images
+                label: 照片（2 到 3 张）
+                type: image
+                options:
+                  multiple:
+                    max: 3
+              - name: caption
+                label: 照片说明（可不填）
+                type: string
+      - name: photos
+        type: image
+        hidden: true
+        options:
+          multiple: true
+
+  - name: travel
+    label: 旅行
+    type: collection
+    path: src/travel
+    filename: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, date, place]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+      - name: place
+        label: 地点
+        type: string
+      - name: cover
+        label: 封面照片
+        type: image
+      - name: published
+        label: 显示在网站上
+        type: boolean
+        default: true
+      - name: body
+        label: 开头的话（可不填）
+        type: rich-text
+      - name: sections
+        label: 内容（文字和照片一块一块加，可以拖动调整顺序）
+        type: block
+        list: true
+        blockKey: type
+        blocks:
+          - name: text
+            label: 文字
+            fields:
+              - name: text
+                label: 文字
+                type: rich-text
+                options:
+                  format: markdown
+          - name: photo
+            label: 照片
+            fields:
+              - name: image
+                label: 照片
+                type: image
+                required: true
+              - name: size
+                label: 大小
+                type: select
+                options:
+                  values:
+                    - name: small
+                      label: 小
+                    - name: medium
+                      label: 中
+                    - name: large
+                      label: 大（和文字一样宽）
+                    - name: wide
+                      label: 超宽
+              - name: caption
+                label: 照片说明（可不填）
+                type: string
+          - name: row
+            label: 几张照片并排
+            fields:
+              - name: images
+                label: 照片（2 到 3 张）
+                type: image
+                options:
+                  multiple:
+                    max: 3
+              - name: caption
+                label: 照片说明（可不填）
+                type: string
+      - name: photos
+        type: image
+        hidden: true
+        options:
+          multiple: true
+
+  - name: site
+    label: 网站设置
+    type: file
+    path: src/_data/site.json
+    fields:
+      - name: title
+        label: 网站名字
+        type: string
+      - name: intro
+        label: 首页的一句话
+        type: string

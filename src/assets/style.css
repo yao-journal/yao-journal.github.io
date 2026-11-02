@@ -120,3 +120,19 @@ main { padding: 0 clamp(1rem, 5vw, 3rem); }
 /* 照片栏：正文下面一张接一张 */
 .photos { max-width: 46rem; margin: 3rem auto 0; display: grid; gap: 1.5rem; }
 .photos img { width: 100%; }
+
+/* 内容块：照片大小 小 / 中 / 大 / 超宽 */
+.prose + .prose { margin-top: 0; }
+.blk-photo, .blk-row { margin: 2.75rem auto; }
+.blk-photo img, .blk-row img { width: 100%; }
+.blk-photo--small { max-width: 19rem; }
+.blk-photo--medium { max-width: 28rem; }
+.blk-photo--large { max-width: 38rem; }
+.blk-photo--wide { max-width: 62rem; }
+.blk-row { max-width: 46rem; }
+.blk-row-imgs { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: .75rem; }
+.blk-row-imgs img, .blk-row-imgs picture { height: 100%; }
+.blk-row-imgs img { aspect-ratio: 4 / 5; object-fit: cover; }
+.blk-photo figcaption, .blk-row figcaption {
+  margin-top: .8rem; text-align: center; font-size: .8rem; letter-spacing: .12em; color: var(--muted);
+}

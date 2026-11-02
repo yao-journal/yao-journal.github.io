@@ -1,0 +1,16 @@
+{#- 按后台“内容”里的顺序，一块一块显示文字和照片 -#}
+{% for s in sections %}
+  {% if s.type == "text" and s.text %}
+  <div class="prose">{{ s.text | markdown | safe }}</div>
+  {% elif s.type == "photo" and s.image %}
+  <figure class="blk-photo blk-photo--{{ s.size or 'large' }}">
+    <img src="{{ s.image }}" alt="{{ s.caption or '' }}">
+    {% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
+  </figure>
+  {% elif s.type == "row" and s.images and s.images.length %}
+  <figure class="blk-row" style="--n: {{ s.images.length }}">
+    <div class="blk-row-imgs">{% for src in s.images %}<img src="{{ src }}" alt="">{% endfor %}</div>
+    {% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+{% endfor %}
