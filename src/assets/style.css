@@ -116,3 +116,7 @@ main { padding: 0 clamp(1rem, 5vw, 3rem); }
   .masthead nav { font-size: .68rem; letter-spacing: .16em; gap: .5rem 1.4rem; }
   .masthead nav span::before { margin: 0 .45em; }
 }
+
+/* 照片栏：正文下面一张接一张 */
+.photos { max-width: 46rem; margin: 3rem auto 0; display: grid; gap: 1.5rem; }
+.photos img { width: 100%; }

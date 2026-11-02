@@ -1,5 +1,5 @@
 {#- 方形格子：有照片显示照片，没有照片显示日期和标题 -#}
-{%- set img = item.data.cover or (item.content | firstImage) -%}
+{%- set img = item.data.cover or (item.data.photos[0] if item.data.photos and item.data.photos.length) or (item.content | firstImage) -%}
 <li class="tile{% if not img %} tile--text{% endif %}">
   <a href="{{ item.url }}">
     {% if img %}<img src="{{ img }}" alt="{{ item.data.title }}">{% endif %}

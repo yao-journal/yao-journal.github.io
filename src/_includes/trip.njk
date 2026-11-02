@@ -13,5 +13,10 @@ layout: base.njk
   <div class="prose">
     {{ content | safe }}
   </div>
+  {% if photos and photos.length %}
+  <div class="photos">
+    {% for src in photos %}<img src="{{ src }}" alt="">{% endfor %}
+  </div>
+  {% endif %}
   <p class="back"><a href="/travel/">全部旅行<span>ALL TRAVEL</span></a></p>
 </article>
