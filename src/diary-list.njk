@@ -3,17 +3,15 @@ layout: base.njk
 title: 日记
 permalink: /diary/
 ---
-<section class="hello hello--small">
-  <h1>日记</h1>
-  <p>一共 {{ collections.diary.length }} 篇。</p>
-</section>
+<div class="list">
 {% for group in collections.diary | byMonth %}
-<section class="block">
-  <h2>{{ group.label }}</h2>
-  <ul class="rows">
-    {% for item in group.items %}{% include "diary-row.njk" %}{% endfor %}
-  </ul>
-</section>
+  <section class="month">
+    <h2>{{ group.label }}</h2>
+    <ul class="rows">
+      {% for item in group.items %}{% include "diary-row.njk" %}{% endfor %}
+    </ul>
+  </section>
 {% else %}
-<p class="empty">还没有日记。打开后台，在“心情日记”里写下第一篇。</p>
+  <p class="empty">还没有日记。打开后台，在“心情日记”里写下第一篇。</p>
 {% endfor %}
+</div>

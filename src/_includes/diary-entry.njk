@@ -1,22 +1,17 @@
 ---
 layout: base.njk
 ---
-{%- set m = moods[mood] -%}
 <article class="entry">
   <header class="entry-head">
-    {% set pm_date = date %}{% set pm_mood = mood %}{% set pm_place = place %}{% set pm_size = 'lg' %}
-    {% include "postmark.njk" %}
-    <div>
-      <p class="entry-date"><time datetime="{{ date | isoDate }}">{{ date | fullDate }}</time></p>
-      <h1>{{ title }}</h1>
-      <p class="entry-meta">
-        {% if m %}<span class="mood" style="--ink: {{ m.ink }}">{{ m.emoji }} {{ mood }}</span>{% endif %}
-        {% if place %}<span class="place">在 {{ place }}</span>{% endif %}
-      </p>
-    </div>
+    <h1>{{ title }}</h1>
+    <p class="entry-meta">
+      <time datetime="{{ date | isoDate }}">{{ date | dotDate }}</time>
+      {% if mood %}<span>{{ mood }}</span>{% endif %}
+      {% if place %}<span>{{ place }}</span>{% endif %}
+    </p>
   </header>
   <div class="prose">
     {{ content | safe }}
   </div>
-  <p class="back"><a href="/diary/">回到全部日记</a></p>
+  <p class="back"><a href="/diary/">全部日记<span>ALL DIARY</span></a></p>
 </article>

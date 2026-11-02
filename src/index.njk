@@ -1,31 +1,10 @@
 ---
 layout: base.njk
 ---
-<section class="hello">
-  <h1>{{ site.title }}</h1>
-  <p>{{ site.intro }}</p>
-</section>
-
-<section class="block">
-  <h2>最近的日子</h2>
-  {% if collections.diary.length %}
-  <ul class="rows">
-    {% for item in collections.diary | head(5) %}{% include "diary-row.njk" %}{% endfor %}
-  </ul>
-  <p class="more"><a href="/diary/">全部日记（{{ collections.diary.length }} 篇）</a></p>
-  {% else %}
-  <p class="empty">还没有日记。打开后台，在“心情日记”里写下第一篇。</p>
-  {% endif %}
-</section>
-
-<section class="block">
-  <h2>旅行</h2>
-  {% if collections.travel.length %}
-  <ul class="cards">
-    {% for item in collections.travel | head(4) %}{% include "trip-card.njk" %}{% endfor %}
-  </ul>
-  {% if collections.travel.length > 4 %}<p class="more"><a href="/travel/">全部旅行</a></p>{% endif %}
-  {% else %}
-  <p class="empty">还没有游记。出发之后，在“旅行”里上传照片、写下第一站。</p>
-  {% endif %}
-</section>
+{% if collections.everything.length %}
+<ul class="grid">
+  {% for item in collections.everything %}{% include "tile.njk" %}{% endfor %}
+</ul>
+{% else %}
+<p class="empty">还没有内容。打开后台写下第一篇日记吧。</p>
+{% endif %}
